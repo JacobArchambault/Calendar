@@ -16,5 +16,7 @@
         <TextBox HorizontalAlignment="Left" Margin="10,144,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Name="LocationLabel" Content="Location" HorizontalAlignment="Left" Margin="10,167,0,0" VerticalAlignment="Top"/>
         <TextBox Name="LocationTextBox" HorizontalAlignment="Left" Margin="10,198,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Name="DescriptionLabel" Content="Description" HorizontalAlignment="Left" Margin="10,221,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="DescriptionTextBlock" HorizontalAlignment="Left" Margin="10,252,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="60"/>
     </Grid>
 </Window>
