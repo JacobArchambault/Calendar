@@ -14,5 +14,7 @@
         <Label Name="EndTimeLabel" Content="End time" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top"/>
         <TextBox Name="StartTimeTextBox" HorizontalAlignment="Left" Margin="10,90,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Margin="10,144,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Name="LocationLabel" Content="Location" HorizontalAlignment="Left" Margin="10,167,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="LocationTextBox" HorizontalAlignment="Left" Margin="10,198,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
