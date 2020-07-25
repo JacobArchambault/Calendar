@@ -8,8 +8,8 @@ namespace Calendar
     internal class CalendarEvent
     {
         internal string Name { get; set; }
-        internal LocalTime StartTime { get; set; }
-        internal LocalTime EndTime { get; set; }
+        internal string StartTime { get; set; }
+        internal string EndTime { get; set; }
         internal string Location { get; set; }
         internal string Description { get; set; }
 
