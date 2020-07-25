@@ -11,5 +11,7 @@
         <TextBox Name="EventNameTextBox" HorizontalAlignment="Left" Margin="10,36,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Name="StartTimeLabel" Content="Start time" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
         <TextBox Name="StartTimeTextBox" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Text="" TextWrapping="Wrap" Width="120"/>
+        <Label Name="EndTimeLabel" Content="End time" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,144,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
