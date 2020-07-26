@@ -39,6 +39,7 @@ namespace Calendar
                     WarningLabel.Content = "";
                     AddEventToSchedule(EventNameTextBox, DatePicker, StartTimeTextBox, LocationTextBox, DescriptionTextBox);
                     ClearTextBoxes(EventNameTextBox, StartTimeTextBox, LocationTextBox, DescriptionTextBox);
+                    ReadEventsFromFile(path);
                 }
                 else
                 {
@@ -53,8 +54,14 @@ namespace Calendar
 
         private void AddEventToSchedule(TextBox eventNameTextBox, DatePicker datePicker, TextBox startTimeTextBox, TextBox locationTextBox, TextBox descriptionTextBox)
         {
-            using var tw = new StreamWriter(path, true);
+            using TextWriter tw = new StreamWriter(path, true);
             tw.WriteLine($"Event name: {eventNameTextBox.Text}.\n\t Date: {datePicker.SelectedDate}.\n\t Start time: {startTimeTextBox.Text}.\n\t Location: {locationTextBox.Text}.\n\t Description: {descriptionTextBox.Text}");
+        }
+
+        private void ReadEventsFromFile(string path)
+        {
+            using TextReader tw = new StreamReader(path, true);
+            EventListTextBox.Text = tw.ReadToEnd();
         }
 
         private void ClearTextBoxes(params TextBox[] textboxes)
