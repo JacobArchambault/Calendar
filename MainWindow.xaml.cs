@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -21,10 +23,11 @@ namespace Calendar
     /// </summary>
     public partial class MainWindow : Window
     {
+        string path = "schedule.txt";
+
         public MainWindow()
         {
             InitializeComponent();
-
         }
 
         private void AddEventButton_Click(object sender, RoutedEventArgs e)
@@ -34,6 +37,7 @@ namespace Calendar
                 if (AreHours(StartTimeTextBox))
                 {
                     WarningLabel.Content = "";
+                    AddEventToSchedule(EventNameTextBox, DatePicker, StartTimeTextBox, LocationTextBox, DescriptionTextBox);
                     ClearTextBoxes(EventNameTextBox, StartTimeTextBox, LocationTextBox, DescriptionTextBox);
                 }
                 else
@@ -45,6 +49,12 @@ namespace Calendar
             {
                 WarningLabel.Content = "All non-optional fields must be filled";
             }
+        }
+
+        private void AddEventToSchedule(TextBox eventNameTextBox, DatePicker datePicker, TextBox startTimeTextBox, TextBox locationTextBox, TextBox descriptionTextBox)
+        {
+            using var tw = new StreamWriter(path, true);
+            tw.WriteLine($"Event name: {eventNameTextBox.Text}.\n\t Date: {datePicker.SelectedDate}.\n\t Start time: {startTimeTextBox.Text}.\n\t Location: {locationTextBox.Text}.\n\t Description: {descriptionTextBox.Text}");
         }
 
         private void ClearTextBoxes(params TextBox[] textboxes)
