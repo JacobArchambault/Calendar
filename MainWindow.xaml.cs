@@ -34,15 +34,24 @@ namespace Calendar
                 if (AreHours(StartTimeTextBox))
                 {
                     WarningLabel.Content = "";
+                    ClearTextBoxes(EventNameTextBox, StartTimeTextBox, LocationTextBox, DescriptionTextBox);
                 }
                 else
                 {
-                    WarningLabel.Content = "Invalid data. You must enter a time in format XX:XX in the hours box";
+                    WarningLabel.Content = "Invalid data. You must enter a valid time in format XX:XX in the start time box";
                 }
             }
             else
             {
                 WarningLabel.Content = "All non-optional fields must be filled";
+            }
+        }
+
+        private void ClearTextBoxes(params TextBox[] textboxes)
+        {
+            foreach (TextBox t in textboxes)
+            {
+                t.Text = "";
             }
         }
 
