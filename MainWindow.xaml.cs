@@ -24,6 +24,7 @@ namespace Calendar
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void AddEventButton_Click(object sender, RoutedEventArgs e)
