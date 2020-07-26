@@ -28,15 +28,15 @@ namespace Calendar
 
         private void AddEventButton_Click(object sender, RoutedEventArgs e)
         {
-            if (FieldsAreFilled(EventNameTextBox, StartTimeTextBox, EndTimeTextBox, LocationTextBox))
+            if (FieldsAreFilled(EventNameTextBox, StartTimeTextBox, LocationTextBox))
             {
-                if (AreHours(StartTimeTextBox, EndTimeTextBox))
+                if (AreHours(StartTimeTextBox))
                 {
                     WarningLabel.Content = "";
                 }
                 else
                 {
-                    WarningLabel.Content = "Invalid data. You must enter a time in format XX:XX in both hours sections";
+                    WarningLabel.Content = "Invalid data. You must enter a time in format XX:XX in the hours box";
                 }
             }
             else
