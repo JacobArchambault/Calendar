@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.DirectoryServices;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -64,8 +65,9 @@ namespace Calendar
         private void AddEventToSchedule(TextBox eventNameTextBox, DatePicker datePicker, TextBox startTimeTextBox, TextBox locationTextBox, TextBox descriptionTextBox)
         {
             // Use the textwriter type to write a line entry to the .txt file. The boolean second parameter in the TextWriter constructor tells the StreamWriter to create a new file at path location if no file currently exists.
+            string date = ((DateTime)datePicker.SelectedDate).ToString("d");
             using TextWriter tw = new StreamWriter(path, true);
-            tw.WriteLine($"Event name: {eventNameTextBox.Text}.\n\t Date: {datePicker.SelectedDate}.\n\t Start time: {startTimeTextBox.Text}.\n\t Location: {locationTextBox.Text}.\n\t Description: {descriptionTextBox.Text}");
+            tw.WriteLine($"Event name: {eventNameTextBox.Text}.\n\t Date: {date}.\n\t Start time: {startTimeTextBox.Text}.\n\t Location: {locationTextBox.Text}.\n\t Description: {descriptionTextBox.Text}");
         }
 
         private void ReadEventsFromFile(string path)
@@ -94,6 +96,12 @@ namespace Calendar
         private bool FieldsAreFilled(params TextBox[] textBoxList)
         {
             return !((from t in textBoxList where string.IsNullOrWhiteSpace(t.Text) select t).Any());
+        }
+
+        private void ClearDataButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearTextBoxes(EventNameTextBox, StartTimeTextBox, LocationTextBox, DescriptionTextBox, EventListTextBox);
+            File.Delete(path);
         }
     }
 }
