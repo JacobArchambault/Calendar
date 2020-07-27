@@ -23,6 +23,7 @@ namespace Calendar
     /// </summary>
     public partial class MainWindow : Window
     {
+        // the file that we are writing to.
         string path = "schedule.txt";
 
         public MainWindow()
@@ -32,28 +33,37 @@ namespace Calendar
 
         private void AddEventButton_Click(object sender, RoutedEventArgs e)
         {
+            // if the textboxes passed in are filled...
             if (FieldsAreFilled(EventNameTextBox, StartTimeTextBox, LocationTextBox))
             {
+                // and if the Start time textbox has regex matching that for a time entry...
                 if (AreHours(StartTimeTextBox))
                 {
+                    // Then clear the warning label,
                     WarningLabel.Content = "";
+                    // add the event to the schedule txt file, grabbing the values from the appropriate locations.
                     AddEventToSchedule(EventNameTextBox, DatePicker, StartTimeTextBox, LocationTextBox, DescriptionTextBox);
+                    // Reset all textbox values to blank (leave the calendar value uncleared to prevent the reader from passing in a null value there) 
                     ClearTextBoxes(EventNameTextBox, StartTimeTextBox, LocationTextBox, DescriptionTextBox);
+                    // And read the events from the .txt file to the multi-line events Textbox on the right-hand side of the form.
                     ReadEventsFromFile(path);
                 }
                 else
                 {
+                    // Let the reader know if the Hours textbox input is formatted incorrectly.
                     WarningLabel.Content = "Invalid data. You must enter a valid time in format XX:XX in the start time box";
                 }
             }
             else
             {
+                // Ensure all required fields are filled, and prompt the user if they aren't
                 WarningLabel.Content = "All non-optional fields must be filled";
             }
         }
 
         private void AddEventToSchedule(TextBox eventNameTextBox, DatePicker datePicker, TextBox startTimeTextBox, TextBox locationTextBox, TextBox descriptionTextBox)
         {
+            // Use the textwriter type to write a line entry to the .txt file. The boolean second parameter in the TextWriter constructor tells the StreamWriter to create a new file at path location if no file currently exists.
             using TextWriter tw = new StreamWriter(path, true);
             tw.WriteLine($"Event name: {eventNameTextBox.Text}.\n\t Date: {datePicker.SelectedDate}.\n\t Start time: {startTimeTextBox.Text}.\n\t Location: {locationTextBox.Text}.\n\t Description: {descriptionTextBox.Text}");
         }
@@ -76,7 +86,7 @@ namespace Calendar
         {
             // The regex for matching a time string, credit Steve Valaitis.
             string pattern = @"^((([0]?[1-9]|1[0-2])(:|\.)[0-5][0-9]((:|\.)[0-5][0-9])?( )?(AM|am|aM|Am|PM|pm|pM|Pm))|(([0]?[0-9]|1[0-9]|2[0-3])(:|\.)[0-5][0-9]((:|\.)[0-5][0-9])?))$";
-            // Check that all textboxes passed in as parameters match the 
+            // Check that all textboxes passed in as parameters match the Regex pattern.
             return textboxes.All(t => Regex.IsMatch(t.Text, pattern));
         }
 
